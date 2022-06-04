@@ -12,7 +12,6 @@ WorkoutNumber = input('''What rep length (in minutes) would you like to make a p
 
 # set directory
 total_data = pd.read_excel('LactateLog.xlsx', 'Analysis')
-#data = total_data.loc[total_data['Workout'] == int(WorkoutNumber)]
 data = total_data[(total_data['Workout'] >= int(WorkoutNumber)) & (total_data['Workout'] < int(WorkoutNumber)+1)]
 
 # visual data:
@@ -32,8 +31,8 @@ fig, ax1 = plt.subplots()
 
 plot1color = 'purple'
 plt.xlabel('Date')
-ax1.set_ylabel('Average Power (W)', color = plot1color)
-ax1.plot(Date, AvgPower, color = plot1color, label = 'Avg Power', linewidth=3)
+ax1.set_ylabel('Watts', color = plot1color)
+ax1.plot(Date, AvgPower, color = plot1color, label = 'Average Power', linewidth=3)
 ax1.tick_params(axis = 'y', labelcolor = plot1color)
 
 
@@ -41,12 +40,14 @@ ax1.tick_params(axis = 'y', labelcolor = plot1color)
 ax2 = ax1.twinx()
 
 plot2color = 'red'
-ax2.set_ylabel('Average Lactate', color = plot2color)
-ax2.plot(Date, AvgLactate, color = plot2color, label = 'Avg Lactate', linewidth=3)
+ax2.set_ylabel('mmol/L', color = plot2color)
+ax2.plot(Date, AvgLactate, color = plot2color, label = 'Average Lactate', linewidth=3)
 ax2.tick_params(axis = 'y', labelcolor = plot2color)
+ax2.axhline(3, color = 'red', linestyle = 'dashed')
+ax2.axhline(2, color = 'red', linestyle = 'dashed')
 
-
-#plot title
+#plot title and legend
 plt.title('Average Power vs Lactate for ' + WorkoutNumber + 'min reps')
+fig.legend(loc = 'upper left')
 #show plot
 plt.show()
