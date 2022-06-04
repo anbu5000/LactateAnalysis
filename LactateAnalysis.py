@@ -6,14 +6,17 @@ import xlrd
 
 
 # choose what workout to look at
-WorkoutNumber = input('What rep length would you like to make a plot of? Must be 6, 3 or 1:')
+WorkoutNumber = input('''What rep length (in minutes) would you like to make a plot of? 
+                      This will include rep lengths close to this value (if 3, then will include 3.3).
+                      Enter 6, 3, or 1:''')
 
 # set directory
 total_data = pd.read_excel('LactateLog.xlsx', 'Analysis')
-data = total_data.loc[total_data['Workout'] == int(WorkoutNumber) ]
+#data = total_data.loc[total_data['Workout'] == int(WorkoutNumber)]
+data = total_data[(total_data['Workout'] >= int(WorkoutNumber)) & (total_data['Workout'] < int(WorkoutNumber)+1)]
 
 # visual data:
-#print(data)
+print(data)
 
 # converting column data in numpy array
 Date = np.array(data['Date'])[:, None]
