@@ -7,7 +7,6 @@ import xlrd
 
 # choose what workout to look at
 WorkoutNumber = input('''What rep length (in minutes) would you like to make a plot of? 
-                      This will include rep lengths close to this value (if 3, then will include 3.3).
                       Enter 6, 3, or 1:''')
 
 # set directory
