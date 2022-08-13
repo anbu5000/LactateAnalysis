@@ -8,6 +8,7 @@ import xlrd
 # choose what workout to look at
 WorkoutNumber = input('''What rep length (in minutes) would you like to make a plot of? 
                       Enter 6, 3, or 1:''')
+6
 
 # set directory
 total_data = pd.read_excel('LactateLog.xlsx', 'Analysis')
